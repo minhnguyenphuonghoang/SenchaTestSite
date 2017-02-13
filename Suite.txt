@@ -1,0 +1,33 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Test Cases ***
+Test
+    Open Browser    https://www.propertyradar.com/    gc
+    Maximize Browser Window
+    Capture Page Screenshot
+    #1. Click Login button
+    Wait Until Page Contains Element    //div[@id="header-outer"]//a[text()="Login"]    5s
+    Comment    Sleep    2s
+    Click Element    //div[@id="header-outer"]//a[text()="Login"]
+    #2.Login
+    #2.1 input email address
+    Capture Page Screenshot
+    Wait Until Page Contains Element    //input[@name="userEmail"]    15s
+    Input Text    //input[@name="userEmail"]    michael.manzo@filestring.com
+    #2.2 input password
+    Capture Page Screenshot
+    Wait Until Page Contains Element    //input[@name="userPW"]    5s
+    Input Text    //input[@name="userPW"]    radar2
+    #2.3 click Login button
+    Capture Page Screenshot
+    Wait Until Page Contains Element    //span[text()="Login"]    5s
+    Click Element    //span[text()="Login"]
+    Sleep    5s
+    #3. click hamburger menu button
+    Capture Page Screenshot
+    Wait Until Page Contains Element    //a[contains(@id,"usersettingsbutton")]    15s
+    Click Element    //a[contains(@id,"usersettingsbutton")]
+    Sleep    5s
+    Capture Page Screenshot
+    [Teardown]    Close All Browsers
